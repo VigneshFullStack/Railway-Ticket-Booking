@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment as env } from '../environments/environment'; // Alias the import
 import { Observable } from 'rxjs';
 import { Booking, IPassenger, ResponseModel } from '../models/Station';
 import { CONSTANT } from '../constant/constant';
@@ -12,7 +12,7 @@ export class TrainsService {
   apiEndPoint: string = '';
 
   constructor(private http: HttpClient) {
-    this.apiEndPoint = environment.ApiEndPoint;
+    this.apiEndPoint = (env as any).ApiEndPoint; // Explicit casting to any
   }
 
   getTrainsBetweenStations(serachObj: any): Observable<ResponseModel> {

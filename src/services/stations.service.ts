@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
-import { Observable } from 'rxjs';
 import { CONSTANT } from '../constant/constant';
+import { Observable } from 'rxjs';
 import { ResponseModel } from '../models/Station';
+import { environment as env } from '../environments/environment'; // Alias the import
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class StationsService {
   apiEndPoint: string = '';
 
   constructor(private http: HttpClient) {
-    this.apiEndPoint = environment.ApiEndPoint;
+    this.apiEndPoint = (env as any).ApiEndPoint;
   }
 
   getAllStations(): Observable<ResponseModel> {

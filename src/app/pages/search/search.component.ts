@@ -9,11 +9,13 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { StationsService } from '../../../services/stations.service';
 import { TrainsService } from '../../../services/trains.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
@@ -31,6 +33,7 @@ export class SearchComponent {
     new TrainAppBookingPassengers();
 
   loggedUserData: any;
+
   constructor(
     private activactedRoute: ActivatedRoute,
     private stationSrv: StationsService,
@@ -50,15 +53,18 @@ export class SearchComponent {
       this.bokingObj.passengerId = this.loggedUserData.passengerID;
     }
   }
+
   ngOnInit(): void {
     this.loadStations();
   }
+
   AddPassenger() {
     const data = JSON.stringify(this.bookingPassengers);
     const paserData = JSON.parse(data);
 
     this.bokingObj.TrainAppBookingPassengers.push(paserData);
   }
+
   onRemove(index: number) {
     this.bokingObj.TrainAppBookingPassengers.splice(index, 1);
   }
@@ -77,6 +83,7 @@ export class SearchComponent {
       model.style.display = 'none';
     }
   }
+
   loadStations() {
     this.stationSrv.getAllStations().subscribe(
       (res: ResponseModel) => {
@@ -98,6 +105,7 @@ export class SearchComponent {
       }
     );
   }
+
   BookTicket() {
     this.bokingObj.bookingDate = new Date();
     this.bokingObj.totalSeats = this.bokingObj.TrainAppBookingPassengers.length;

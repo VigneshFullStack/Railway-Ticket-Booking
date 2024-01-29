@@ -3,6 +3,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
 import { BookingsComponent } from './pages/bookings/bookings.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { TrainsComponent } from './pages/trains/trains.component';
 
 export const routes: Routes = [
   {
@@ -15,7 +16,7 @@ export const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'search',
+    path: 'search/:fromStationId/:toStationId/:dateOfTravel',
     component: SearchComponent,
   },
   {
@@ -25,5 +26,9 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+  },
+  {
+    path: 'trains',
+    component: TrainsComponent,
   },
 ];

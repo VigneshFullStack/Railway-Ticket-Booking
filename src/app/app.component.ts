@@ -27,6 +27,7 @@ export class AppComponent {
     localStorage.removeItem('trainUser');
     this.loggedUserData = undefined;
   }
+
   openRegister() {
     const model = document.getElementById('registerModel');
     if (model != null) {
@@ -54,7 +55,9 @@ export class AppComponent {
       model.style.display = 'none';
     }
   }
+
   onRegister() {
+    console.log('registerObj : ', this.registerObj);
     this.trainSrv.createPassenger(this.registerObj).subscribe((res: any) => {
       if (res.result) {
         alert('Registration Success');
